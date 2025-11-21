@@ -6,21 +6,18 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const q = new URLSearchParams(location.search);
-  const img = document.createElement("img");
+  const params = new URLSearchParams(location.search);
+  const key = [...params.keys()][0];
 
   const map = {
-    ig:  "https://placeholder.cc/600x800",   // 3:4
-    yt:  "https://placeholder.cc/800x400",   // 2:1
-    tt:  "https://placeholder.cc/600x600",   // 1:1
+    ig: "https://placeholder.cc/600x800",   // 3:4
+    yt: "https://placeholder.cc/800x400",   // 2:1
+    tt: "https://placeholder.cc/600x600",   // 1:1
   };
 
-  let key = [...q.keys()][0];
-  img.src = map[key] || "https://placeholder.cc/600x800";
-  img.style = "width:100%;height:auto;display:block;margin:0 auto;";
-  
-  document.body.innerHTML = "";
-  document.body.appendChild(img);
+  if (map[key]) {
+    document.body.innerHTML = `<img src="${map[key]}" style="width:100%;height:auto;display:block;margin:0 auto;">`;
+  }
 });
 </script>
 
